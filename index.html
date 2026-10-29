@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BioCosmetics - Cosméticos Orgânicos e Sustentáveis</title>
+  
+  <!-- ÍCONES LUCIDE -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- LIGAÇÃO COM O ARQUIVO DE ESTILO (CSS) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">🌿 BioCosmetics</div>
+    
+    <nav>
+      <a href="#inicio" class="nav-link">
+        <i data-lucide="home"></i> Início
+      </a>
+      <a href="#produtos" class="nav-link">
+        <i data-lucide="sparkles"></i> Produtos
+      </a>
+      <button id="btn-abrir-sobre" class="nav-link nav-btn">
+        <i data-lucide="leaf"></i> Sobre Nós
+      </button>
+    </nav>
+
+    <div class="acoes-header">
+      <!-- BOTÃO DO CARRINHO -->
+      <button id="btn-abrir-carrinho" class="btn-carrinho-icon">
+        <i data-lucide="shopping-bag"></i>
+        <span id="contador-carrinho" class="badge-carrinho">0</span>
+      </button>
+
+      <!-- BOTÃO DE LOGIN -->
+      <button id="btn-abrir-login" class="btn-login">
+        <i data-lucide="user"></i>
+        <span>Entrar</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- SEÇÃO PRINCIPAL (HERO) -->
+  <section class="hero" id="inicio">
+    <h1>Beleza Natural e Sustentável</h1>
+    <p>Cuide da sua pele com produtos 100% orgânicos, livres de crueldade animal e com embalagens biodegradáveis.</p>
+    <a href="#produtos" class="btn-principal">Ver Produtos</a>
+  </section>
+
+  <!-- SEÇÃO DE PRODUTOS -->
+  <section class="produtos" id="produtos">
+    <h2 class="titulo-secao">Nossos Lançamentos</h2>
+    
+    <div class="grid-produtos">
+      
+      <!-- PRODUTO 1 -->
+      <div class="card-produto" 
+           data-nome="Sabonete Herbal" 
+           data-preco="24.90" 
+           data-descricao="Sabonete artesanal formulado com óleos vegetais e extratos botânicos. Limpa suavemente mantendo a hidratação natural da pele."
+           data-icone="droplet"
+           data-opcoes-tipo="Fragrância"
+           data-opcoes="Lavanda, Hortelã, Eucalipto, Alecrim">
+        <div class="icone-placeholder">
+          <i data-lucide="droplet"></i>
+        </div>
+        <h3>Sabonete Herbal</h3>
+        <p>Com óleo essencial de alecrim e lavanda.</p>
+        <div class="preco">R$ 24,90</div>
+        <button class="btn-principal btn-adicionar-direto">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+
+      <!-- PRODUTO 2 -->
+      <div class="card-produto" 
+           data-nome="Shampoo Orgânico" 
+           data-preco="49.90" 
+           data-descricao="Shampoo natural livre de sulfatos e parabenos. Fortalece os fios desde a raiz e devolve o brilho natural."
+           data-icone="sparkles"
+           data-opcoes-tipo="Tipo de Cabelo"
+           data-opcoes="Todos os Tipos, Oleosos, Secos e Danificados">
+        <div class="icone-placeholder">
+          <i data-lucide="sparkles"></i>
+        </div>
+        <h3>Shampoo Orgânico</h3>
+        <p>Hidratação profunda e limpeza suave.</p>
+        <div class="preco">R$ 49,90</div>
+        <button class="btn-principal btn-adicionar-direto">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+
+      <!-- PRODUTO 3 -->
+      <div class="card-produto" 
+           data-nome="Creme Hidratante Corporal" 
+           data-preco="45.00" 
+           data-descricao="Creme ultra-nutritivo com manteiga de karité pura. Absorção rápida, toque aveludado e nutrição prolongada por 24h."
+           data-icone="flower2"
+           data-opcoes-tipo="Aroma"
+           data-opcoes="Camomila & Mel, Aloe Vera, Sem Fragrância">
+        <div class="icone-placeholder">
+          <i data-lucide="flower2"></i>
+        </div>
+        <h3>Creme Hidratante Corporal</h3>
+        <p>Nutrição intensa com manteiga de karité pura.</p>
+        <div class="preco">R$ 45,00</div>
+        <button class="btn-principal btn-adicionar-direto">
+          Adicionar ao Carrinho
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MODAL DE DETALHES DO PRODUTO -->
+  <div id="modal-produto" class="modal-overlay">
+    <div class="modal-conteudo modal-detalhes">
+      <button id="btn-fechar-produto" class="btn-fechar">&times;</button>
+      
+      <div class="detalhes-container">
+        <div class="detalhes-icone" id="detalhes-icone">
+          <i data-lucide="package"></i>
+        </div>
+
+        <div class="detalhes-info">
+          <h2 id="detalhes-titulo">Nome do Produto</h2>
+          <div class="preco-destaque" id="detalhes-preco">R$ 0,00</div>
+          <p class="descricao-produto" id="detalhes-descricao">Descrição detalhada do produto...</p>
+
+          <!-- SELEÇÃO DE OPÇÃO / FRAGRÂNCIA -->
+          <div class="campo-grupo">
+            <label for="detalhes-opcao" id="label-opcao">Selecione uma opção:</label>
+            <select id="detalhes-opcao">
+              <!-- Opções inseridas via JS -->
+            </select>
+          </div>
+
+          <!-- SELEÇÃO DE QUANTIDADE -->
+          <div class="campo-grupo">
+            <label>Quantidade:</label>
+            <div class="qtd-seletor">
+              <button id="btn-qtd-menos">-</button>
+              <span id="detalhes-qtd">1</span>
+              <button id="btn-qtd-mais">+</button>
+            </div>
+          </div>
+
+          <button id="btn-adicionar-modal" class="btn-principal btn-block">
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CADASTRO -->
+  <div id="modal-cadastro" class="modal-overlay">
+    <div class="modal-conteudo">
+      <button id="btn-fechar-modal" class="btn-fechar">&times;</button>
+      <h2>Criar sua Conta</h2>
+      <p class="subtitulo-modal">Junte-se à comunidade BioCosmetics</p>
+
+      <form id="form-cadastro">
+        <div class="campo-grupo">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" placeholder="Seu nome" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="sobrenome">Sobrenome</label>
+          <input type="text" id="sobrenome" placeholder="Seu sobrenome" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="telefone">Número de Telefone</label>
+          <input type="tel" id="telefone" placeholder="(11) 99999-9999" required>
+        </div>
+        <div class="campo-grupo">
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" placeholder="Crie uma senha segura" required>
+        </div>
+        <button type="submit" class="btn-principal btn-block">Criar Conta</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL SOBRE NÓS -->
+  <div id="modal-sobre" class="modal-overlay">
+    <div class="modal-conteudo modal-ampla">
+      <button id="btn-fechar-sobre" class="btn-fechar">&times;</button>
+      
+      <div class="sobre-header">
+        <span class="badge-tag">Sustentabilidade & Ciência</span>
+        <h2>Sobre a BioCosmetics</h2>
+        <p class="subtitulo-modal">Transformando a rotina de autocuidado em um ato de respeito ao planeta.</p>
+      </div>
+
+      <div class="sobre-corpo">
+        <div class="sobre-bloco">
+          <h3><i data-lucide="award"></i> Quem Somos</h3>
+          <p>A <strong>BioCosmetics</strong> é uma empresa líder na formulação de cosméticos 100% orgânicos e ecologicamente responsáveis.</p>
+        </div>
+
+        <div class="sobre-bloco">
+          <h3><i data-lucide="factory"></i> O Que Fazemos</h3>
+          <p>Desenvolvemos produtos de autocuidado natural garantindo matérias-primas de origem ética e comércio justo.</p>
+        </div>
+
+        <div class="grid-pilares">
+          <div class="pilar-item">
+            <i data-lucide="shield-check"></i>
+            <h4>100% Orgânico</h4>
+            <p>Livre de parabenos e sulfatos.</p>
+          </div>
+          <div class="pilar-item">
+            <i data-lucide="heart"></i>
+            <h4>Cruelty-Free</h4>
+            <p>Não testado em animais.</p>
+          </div>
+          <div class="pilar-item">
+            <i data-lucide="recycle"></i>
+            <h4>Zero Plástico</h4>
+            <p>Embalagens recicláveis.</p>
+          </div>
+        </div>
+
+        <!-- FORMULÁRIO DE CONTATO -->
+        <div class="secao-contacto">
+          <h3><i data-lucide="mail"></i> Fale Conosco</h3>
+          <p class="subtitulo-contacto">Envie uma mensagem para a nossa equipe.</p>
+
+          <form id="form-contacto">
+            <div class="campo-grupo">
+              <label for="cont-nome">Nome Completo</label>
+              <input type="text" id="cont-nome" placeholder="Digite seu nome" required>
+            </div>
+            <div class="campo-grupo">
+              <label for="cont-email">E-mail</label>
+              <input type="email" id="cont-email" placeholder="seuemail@exemplo.com" required>
+            </div>
+            <div class="campo-grupo">
+              <label for="cont-mensagem">Mensagem</label>
+              <textarea id="cont-mensagem" rows="3" placeholder="Escreva aqui sua mensagem..." required></textarea>
+            </div>
+            <button type="submit" class="btn-principal btn-block">Enviar Mensagem</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAVETA LATERAL DO CARRINHO -->
+  <div id="carrinho-painel" class="carrinho-painel">
+    <div class="carrinho-topo">
+      <h3><i data-lucide="shopping-bag"></i> Seu Carrinho</h3>
+      <button id="btn-fechar-carrinho" class="btn-fechar">&times;</button>
+    </div>
+
+    <div id="lista-carrinho" class="carrinho-itens">
+      <!-- ITENS INSERIDOS VIA JAVASCRIPT -->
+    </div>
+
+    <div class="carrinho-rodape">
+      <div class="total-linha">
+        <span>Total:</span>
+        <strong id="total-carrinho">R$ 0,00</strong>
+      </div>
+      <button id="btn-finalizar-compra" class="btn-principal btn-block">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <div id="carrinho-overlay" class="carrinho-overlay"></div>
+
+  <!-- RODAPÉ -->
+  <footer>
+    <p>&copy; 2026 BioCosmetics — Projeto Acadêmico/Iniciante. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- SCRIPT COMPLETO -->
+  <script>
+    lucide.createIcons();
+
+    let carrinho = [];
+    let produtoSelecionado = null;
+    let qtdModal = 1;
+
+    // ELEMENTOS CARRINHO
+    const btnAbrirCarrinho = document.getElementById('btn-abrir-carrinho');
+    const btnFecharCarrinho = document.getElementById('btn-fechar-carrinho');
+    const painelCarrinho = document.getElementById('carrinho-painel');
+    const overlayCarrinho = document.getElementById('carrinho-overlay');
+    const listaCarrinho = document.getElementById('lista-carrinho');
+    const totalCarrinhoEl = document.getElementById('total-carrinho');
+    const contadorCarrinhoEl = document.getElementById('contador-carrinho');
+    const btnFinalizarCompra = document.getElementById('btn-finalizar-compra');
+
+    // ELEMENTOS MODAL DETALHES PRODUTO
+    const modalProduto = document.getElementById('modal-produto');
+    const btnFecharProduto = document.getElementById('btn-fechar-produto');
+    const detalhesTitulo = document.getElementById('detalhes-titulo');
+    const detalhesPreco = document.getElementById('detalhes-preco');
+    const detalhesDescricao = document.getElementById('detalhes-descricao');
+    const detalhesIcone = document.getElementById('detalhes-icone');
+    const labelOpcao = document.getElementById('label-opcao');
+    const detalhesOpcaoSelect = document.getElementById('detalhes-opcao');
+    const detalhesQtdEl = document.getElementById('detalhes-qtd');
+    const btnQtdMenos = document.getElementById('btn-qtd-menos');
+    const btnQtdMais = document.getElementById('btn-qtd-mais');
+    const btnAdicionarModal = document.getElementById('btn-adicionar-modal');
+
+    // CONTROLE ABRIR/FECHAR CARRINHO
+    function abrirCarrinho() {
+      painelCarrinho.classList.add('ativo');
+      overlayCarrinho.classList.add('ativo');
+    }
+
+    function fecharCarrinho() {
+      painelCarrinho.classList.remove('ativo');
+      overlayCarrinho.classList.remove('ativo');
+    }
+
+    btnAbrirCarrinho.addEventListener('click', abrirCarrinho);
+    btnFecharCarrinho.addEventListener('click', fecharCarrinho);
+    overlayCarrinho.addEventListener('click', fecharCarrinho);
+
+    // CLICK NOS CARDS PARA ABRIR O POP-UP DE DETALHES
+    const cards = document.querySelectorAll('.card-produto');
+    cards.forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Se clicar no botão interno de adicionar direto, não abre o modal
+        if (e.target.classList.contains('btn-adicionar-direto')) {
+          e.stopPropagation();
+          const nome = card.getAttribute('data-nome');
+          const preco = parseFloat(card.getAttribute('data-preco'));
+          const icone = card.getAttribute('data-icone');
+          const opcoes = card.getAttribute('data-opcoes').split(', ');
+          adicionarAoCarrinho(nome, preco, icone, opcoes[0], 1);
+          return;
+        }
+
+        // Caso contrário, carrega e abre os detalhes do produto
+        produtoSelecionado = {
+          nome: card.getAttribute('data-nome'),
+          preco: parseFloat(card.getAttribute('data-preco')),
+          descricao: card.getAttribute('data-descricao'),
+          icone: card.getAttribute('data-icone'),
+          opcoesTipo: card.getAttribute('data-opcoes-tipo'),
+          opcoes: card.getAttribute('data-opcoes').split(', ')
+        };
+
+        qtdModal = 1;
+        detalhesQtdEl.textContent = qtdModal;
+        detalhesTitulo.textContent = produtoSelecionado.nome;
+        detalhesPreco.textContent = `R$ ${produtoSelecionado.preco.toFixed(2).replace('.', ',')}`;
+        detalhesDescricao.textContent = produtoSelecionado.descricao;
+        detalhesIcone.innerHTML = `<i data-lucide="${produtoSelecionado.icone}"></i>`;
+        
+        labelOpcao.textContent = `Selecione: (${produtoSelecionado.opcoesTipo})`;
+        detalhesOpcaoSelect.innerHTML = '';
+        produtoSelecionado.opcoes.forEach(op => {
+          const opt = document.createElement('option');
+          opt.value = op;
+          opt.textContent = op;
+          detalhesOpcaoSelect.appendChild(opt);
+        });
+
+        lucide.createIcons();
+        modalProduto.classList.add('ativo');
+      });
+    });
+
+    btnFecharProduto.addEventListener('click', () => modalProduto.classList.remove('ativo'));
+
+    // CONTROLE DE QUANTIDADE NA MODAL DE DETALHES
+    btnQtdMenos.addEventListener('click', () => {
+      if (qtdModal > 1) {
+        qtdModal--;
+        detalhesQtdEl.textContent = qtdModal;
+      }
+    });
+
+    btnQtdMais.addEventListener('click', () => {
+      qtdModal++;
+      detalhesQtdEl.textContent = qtdModal;
+    });
+
+    // BOTAO ADICIONAR DENTRO DO MODAL
+    btnAdicionarModal.addEventListener('click', () => {
+      if (produtoSelecionado) {
+        const opcaoEscolhida = detalhesOpcaoSelect.value;
+        const nomeCompleto = `${produtoSelecionado.nome} (${opcaoEscolhida})`;
+        adicionarAoCarrinho(nomeCompleto, produtoSelecionado.preco, produtoSelecionado.icone, opcaoEscolhida, qtdModal);
+        modalProduto.classList.remove('ativo');
+        abrirCarrinho();
+      }
+    });
+
+    // ADICIONAR ITEM AO CARRINHO
+    function adicionarAoCarrinho(nome, preco, icone, opcao, quantidade) {
+      const itemExistente = carrinho.find(item => item.nome === nome);
+      if (itemExistente) {
+        itemExistente.quantidade += quantidade;
+      } else {
+        carrinho.push({ nome, preco, icone, opcao, quantidade });
+      }
+      atualizarCarrinho();
+    }
+
+    // ATUALIZAR INTERFACE DO CARRINHO
+    function atualizarCarrinho() {
+      listaCarrinho.innerHTML = '';
+      let total = 0;
+      let totalItens = 0;
+
+      if (carrinho.length === 0) {
+        listaCarrinho.innerHTML = '<p class="carrinho-vazio">Seu carrinho está vazio.</p>';
+      } else {
+        carrinho.forEach((item, index) => {
+          total += item.preco * item.quantidade;
+          totalItens += item.quantidade;
+
+          const itemEl = document.createElement('div');
+          itemEl.classList.add('item-carrinho');
+          itemEl.innerHTML = `
+            <div class="thumb-icone">
+              <i data-lucide="${item.icone}"></i>
+            </div>
+            <div class="info-item">
+              <h4>${item.nome}</h4>
+              <p>R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+              <div class="qtd-controle">
+                <button onclick="alterarQtd(${index}, -1)">-</button>
+                <span>${item.quantidade}</span>
+                <button onclick="alterarQtd(${index}, 1)">+</button>
+              </div>
+            </div>
+            <button class="btn-remover" onclick="removerItem(${index})">&times;</button>
+          `;
+          listaCarrinho.appendChild(itemEl);
+        });
+      }
+
+      totalCarrinhoEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+      contadorCarrinhoEl.textContent = totalItens;
+      lucide.createIcons();
+    }
+
+    window.alterarQtd = function(index, mudanca) {
+      carrinho[index].quantidade += mudanca;
+      if (carrinho[index].quantidade <= 0) {
+        carrinho.splice(index, 1);
+      }
+      atualizarCarrinho();
+    };
+
+    window.removerItem = function(index) {
+      carrinho.splice(index, 1);
+      atualizarCarrinho();
+    };
+
+    btnFinalizarCompra.addEventListener('click', () => {
+      if (carrinho.length === 0) {
+        alert('Seu carrinho está vazio!');
+      } else {
+        alert('Compra finalizada com sucesso!');
+        carrinho = [];
+        atualizarCarrinho();
+        fecharCarrinho();
+      }
+    });
+
+    // OUTRAS MODAIS
+    const btnAbrirLogin = document.getElementById('btn-abrir-login');
+    const btnFecharLogin = document.getElementById('btn-fechar-modal');
+    const modalCadastro = document.getElementById('modal-cadastro');
+    const formCadastro = document.getElementById('form-cadastro');
+
+    btnAbrirLogin.addEventListener('click', () => modalCadastro.classList.add('ativo'));
+    btnFecharLogin.addEventListener('click', () => modalCadastro.classList.remove('ativo'));
+
+    formCadastro.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Conta criada com sucesso!');
+      modalCadastro.classList.remove('ativo');
+      formCadastro.reset();
+    });
+
+    const btnAbrirSobre = document.getElementById('btn-abrir-sobre');
+    const btnFecharSobre = document.getElementById('btn-fechar-sobre');
+    const modalSobre = document.getElementById('modal-sobre');
+    const formContacto = document.getElementById('form-contacto');
+
+    btnAbrirSobre.addEventListener('click', () => modalSobre.classList.add('ativo'));
+    btnFecharSobre.addEventListener('click', () => modalSobre.classList.remove('ativo'));
+
+    formContacto.addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Mensagem enviada com sucesso!');
+      modalSobre.classList.remove('ativo');
+      formContacto.reset();
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === modalCadastro) modalCadastro.classList.remove('ativo');
+      if (event.target === modalSobre) modalSobre.classList.remove('ativo');
+      if (event.target === modalProduto) modalProduto.classList.remove('ativo');
+    });
+  </script>
+
+</body>
+</html>
